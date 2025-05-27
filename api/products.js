@@ -26,5 +26,4 @@ app.post('/api/products', async (req, res) => {
   }
 });
 
-// Vercel expects a default export as a handler
 module.exports = app;
