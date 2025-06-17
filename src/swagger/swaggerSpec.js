@@ -7,7 +7,7 @@ module.exports = {
   },
   servers: [
     {
-      url: "http://localhost:3000",
+      url: "https://test-exporessjs.vercel.app/",
     },
   ],
   paths: {
