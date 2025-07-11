@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 const { encrypt, decrypt } = require("../utils/crypto");
+const verifyToken = require("../middleware/authMiddleware");
 
 router.get("/", async (req, res) => {
   try {
@@ -63,7 +64,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const { name, price, description } = req.body;
 
   if (!name || !price || !description) {
@@ -98,7 +99,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   const { name, price, description } = req.body;
 
   if (!name || !price || !description) {
