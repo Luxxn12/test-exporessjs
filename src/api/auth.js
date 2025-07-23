@@ -74,13 +74,12 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(
       { id: user.id, username: user.username, name: user.name },
       JWT_SECRET,
-      { algorithm: "HS256", expiresIn: "1d" }
+      { algorithm: "HS256", expiresIn: "10m" }
     );
 
     res.json({
       success: true,
       message: "Login berhasil",
-      token,
       user: {
         id: user.id,
         name: user.name,
@@ -88,6 +87,7 @@ router.post("/login", async (req, res) => {
         username: user.username,
         address: user.address,
       },
+      token,
     });
   } catch (err) {
     console.error("Login error:", err.message);
